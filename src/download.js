@@ -7,13 +7,8 @@ export default function Download() {
     const [age, setAge] = useState(37);
     const [height, setHeight] = useState(170);
     const [weight, setWeight] = useState(75);
-    const [bmi, setBMI] = useState(getBMI());
-    const [fat, setFat] = useState(getFat());
-    
-    function download(formData) {
-    //   const query = formData.get("query");
-      alert(`You searched for '${formData}'`);
-    }
+    const [bmi, setBMI] = useState(25);
+    const [fat, setFat] = useState(22.31);
 
     function getCurrentDate() {
         const currentDate = new Date();
@@ -26,18 +21,23 @@ export default function Download() {
     }
 
     function getBMI() {
-        return weight / ( ( height / 100) ^ 2 )
+        return weight / ((height / 100) ^ 2)
     }
 
     function getFat() {
-        return (1.20 * bmi) + (0.23 * age) - 16.2
+        return (1.20 * Number(bmi)) + (0.23 * age) - 16.2
     }
 
-    function getOutput(){
+    function changeBMI(e) {
+        setBMI(e.target.value)
+        // setFat(getFat())
+    }
+
+    function getOutput() {
         return <pre>
             Body{"\n"}
             date,time,weight,bmi,fat{"\n"}
-            {date},{time},{weight},{bmi},{getFat()}{"\n"}
+            {date},{time},{weight},{bmi},{fat}{"\n"}
         </pre>
     }
 
@@ -46,50 +46,60 @@ export default function Download() {
         return "data:text/plain;base64," + btoa(ReactDOMServer.renderToString(getOutput()).replace(regex, ""))
     }
 
-
     return (
-      <form action={download}>
-        <label for="date">Date:
-            <input name="date" value={date} onChange={e => setDate(e.target.value)}/>
-        </label>
+        <form>
+            <div>
+                <label for="date">Date:
+                    <input name="date" value={date} onChange={e => setDate(e.target.value)} />
+                </label>
+            </div>
+            <div>
+                <label for="time">Time:
+                    <input name="time" value={time} onChange={e => setTime(e.target.value)} />
+                </label>
+            </div>
+            <div>
+                <label for="age">Age:
+                    <input name="age" value={age} onChange={e => setAge(e.target.value)} />
+                </label>
+            </div>
 
-        <label for="time">Time:
-            <input name="time" value={time} onChange={e => setTime(e.target.value)}/>
-        </label>
+            <div>
+                <label for="height">Height (cm):
+                    <input name="height" value={height} onChange={e => setHeight(e.target.value)} />
+                </label>
+            </div>
 
-        <label for="age">Age:
-            <input name="age" value={age} onChange={e => setAge(e.target.value)}/>
-        </label>
+            <div>
+                <label for="weight">Weight (kg):
+                    <input name="weight" value={weight} onChange={e => setWeight(e.target.value)} />
+                </label>
+            </div>
 
-        <label for="height">Height:
-            <input name="height" value={height} onChange={e => setHeight(e.target.value)}/>
-        </label>
+            <div>
+                <label for="bmi">BMI:
+                    <input name="bmi" value={bmi} onChange={e => changeBMI(e)} />
+                </label>
+            </div>
 
-        <label for="weight">Weight:
-            <input name="weight" value={weight} onChange={e => setWeight(e.target.value)}/>
-        </label>
+            <div>
+                <label for="fat">Fat (%):
+                    <input name="fat" value={fat} onChange={e => setFat(e.target.value)} />
+                </label>
+            </div>
+            <hr />
 
-        <label for="bmi">BMI:
-            <input name="bmi" value={bmi} onChange={e => setBMI(e.target.value)}/>
-        </label>
+            <pre>
+                {getOutput()}
+            </pre>
 
-        <label for="fat">Fat:
-            <input name="fat" value={fat} onChange={e => setFat(e.target.value)}/>
-        </label>
+            <hr />
 
-        <hr />
+            <a href={getDataHREF()} download="weight.csv">Download</a>
 
-        <pre>
-            {getOutput()}
-        </pre>
+            <hr />
 
-        <hr/>
-
-        <a href={getDataHREF()} download="weight.csv">Download</a>
-
-        <hr />
-
-        <a href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
-      </form>
+            <a href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
+        </form>
     );
-  }
+}

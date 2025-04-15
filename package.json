@@ -1,5 +1,6 @@
 {
   "name": "garmin-connect-customer-import-data",
+  "homepage": "https://www.jamesmoriarty.xyz/garmin-connect-customer-import-data/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

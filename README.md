@@ -6,6 +6,10 @@
 
 The tool can be found [here](https://www.jamesmoriarty.xyz/garmin-connect-custom-import-data/).
 
+## Screenshots
+
+![Screenshot of BMI Form](docs/screenshot.jpg)
+
 ## Default Calculations
 
 ### BMI

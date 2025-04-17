@@ -112,13 +112,13 @@ export default function Download() {
                 </pre>
             </div>
 
-            <hr />
-
-            <a href={getDataHREF()} download="weight.csv">Download</a>
+            <a role="button" href={getDataHREF()} download="weight.csv">Download</a>
 
             <hr />
 
-            <a href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
+            <a class="secondary" role="button" href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
+
+            <hr />
         </form>
     );
 }

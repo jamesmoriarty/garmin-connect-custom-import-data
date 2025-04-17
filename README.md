@@ -36,6 +36,12 @@ weight / ((height / 100) ^ 2)
 ±3.5%
 ```
 
+### [Vibes Based](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+
+```
+±200%
+```
+
 ## Development
 
 ```

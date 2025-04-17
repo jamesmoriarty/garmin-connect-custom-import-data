@@ -8,7 +8,7 @@ export default function Download() {
     const [height, setHeight] = useState(170);
     const [weight, setWeight] = useState(75);
     const [bmi, setBMI] = useState(25);
-    const [fat, setFat] = useState(22.31);
+    const [fat, setFat] = useState(22);
 
     function getCurrentDate() {
         const currentDate = new Date();
@@ -20,25 +20,40 @@ export default function Download() {
         return currentDate.toLocaleTimeString("en-NZ", { hour12: false })
     }
 
-    function getBMI() {
-        return weight / ((height / 100) ^ 2)
+    function getBMI(weight, height) {
+        return Math.round(weight / ((height / 100) ^ 2))
     }
 
-    function getFat() {
-        return (1.20 * Number(bmi)) + (0.23 * age) - 16.2
+    function getFat(bmi, age) {
+        return Math.round((1.20 * bmi) + (0.23 * age) - 16.2)
     }
 
-    function changeBMI(e) {
-        setBMI(e.target.value)
-        // setFat(getFat())
+    function changeAge(age) {
+        setAge(age)
+        setFat(getFat(bmi, age))
+    }
+
+    function changeHeight(height) {
+        setHeight(height)
+        changeBMI(getBMI(weight, height))
+    }
+
+    function changeWeight(weight) {
+        setWeight(weight)
+        changeBMI(getBMI(weight, height))
+    }
+
+    function changeBMI(bmi) {
+        setBMI(bmi)
+        setFat(getFat(bmi, age))
     }
 
     function getOutput() {
-        return <pre>
+        return <code>
             Body{"\n"}
             date,time,weight,bmi,fat{"\n"}
             {date},{time},{weight},{bmi},{fat}{"\n"}
-        </pre>
+        </code>
     }
 
     function getDataHREF() {
@@ -60,25 +75,25 @@ export default function Download() {
             </div>
             <div>
                 <label for="age">Age:
-                    <input name="age" value={age} onChange={e => setAge(e.target.value)} />
+                    <input name="age" value={age} onChange={e => changeAge(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
                 <label for="height">Height (cm):
-                    <input name="height" value={height} onChange={e => setHeight(e.target.value)} />
+                    <input name="height" value={height} onChange={e => changeHeight(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
                 <label for="weight">Weight (kg):
-                    <input name="weight" value={weight} onChange={e => setWeight(e.target.value)} />
+                    <input name="weight" value={weight} onChange={e => changeWeight(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
                 <label for="bmi">BMI:
-                    <input name="bmi" value={bmi} onChange={e => changeBMI(e)} />
+                    <input name="bmi" value={bmi} onChange={e => changeBMI(Number(e.target.value))} />
                 </label>
             </div>
 
@@ -87,11 +102,15 @@ export default function Download() {
                     <input name="fat" value={fat} onChange={e => setFat(e.target.value)} />
                 </label>
             </div>
+
             <hr />
 
-            <pre>
-                {getOutput()}
-            </pre>
+            <div>
+                <label for="preview">Preview:</label>
+                <pre>
+                    {getOutput()}
+                </pre>
+            </div>
 
             <hr />
 

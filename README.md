@@ -21,7 +21,7 @@ weight / ((height / 100) ^ 2)
 ### Fat Percentage
 
 ```
-(1.20 * bmi) + (0.23 * age) - 16.
+(1.20 * bmi) + (0.23 * age) - 16.2
 ```
 
 ## Development

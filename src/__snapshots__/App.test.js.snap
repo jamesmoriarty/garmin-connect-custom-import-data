@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <form>
+      <div>
+        <label>
+          Date:
+          <input
+            name="date"
+            value="1/04/2025"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Time:
+          <input
+            name="time"
+            value="24:00:00"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Age:
+          <input
+            name="age"
+            value="37"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Height (cm):
+          <input
+            name="height"
+            value="170"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Weight (kg):
+          <input
+            name="weight"
+            value="75"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          BMI:
+          <input
+            name="bmi"
+            value="25"
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Fat (%):
+          <input
+            name="fat"
+            value="22"
+          />
+        </label>
+      </div>
+      <hr />
+      <div>
+        <label>
+          Preview:
+        </label>
+        <pre>
+          <code>
+            Body
+date,time,weight,bmi,fat
+1/04/2025,24:00:00,75,25,22
+
+          </code>
+        </pre>
+      </div>
+      <a
+        download="weight.csv"
+        href="data:text/plain;base64,Qm9keQpkYXRlLHRpbWUsd2VpZ2h0LGJtaSxmYXQKMS8wNC8yMDI1LDI0OjAwOjAwLDc1LDI1LDIyCg=="
+        role="button"
+      >
+        Download
+      </a>
+      <hr />
+      <a
+        class="secondary"
+        href="https://connect.garmin.com/modern/import-data"
+        rel="noreferrer"
+        role="button"
+        target="_blank"
+      >
+        Import Data
+      </a>
+      <hr />
+    </form>
+  </div>
+</DocumentFragment>
+`;

@@ -64,49 +64,49 @@ export default function Download() {
     return (
         <form>
             <div>
-                <label for="date">Date:
+                <label>Date:
                     <input name="date" value={date} onChange={e => setDate(e.target.value)} />
                 </label>
             </div>
             <div>
-                <label for="time">Time:
+                <label>Time:
                     <input name="time" value={time} onChange={e => setTime(e.target.value)} />
                 </label>
             </div>
             <div>
-                <label for="age">Age:
+                <label>Age:
                     <input name="age" value={age} onChange={e => changeAge(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
-                <label for="height">Height (cm):
+                <label>Height (cm):
                     <input name="height" value={height} onChange={e => changeHeight(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
-                <label for="weight">Weight (kg):
+                <label>Weight (kg):
                     <input name="weight" value={weight} onChange={e => changeWeight(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
-                <label for="bmi">BMI:
+                <label>BMI:
                     <input name="bmi" value={bmi} onChange={e => changeBMI(Number(e.target.value))} />
                 </label>
             </div>
 
             <div>
-                <label for="fat">Fat (%):
-                    <input name="fat" value={fat} onChange={e => setFat(e.target.value)} />
+                <label>Fat (%):
+                    <input name="fat" value={fat} onChange={e => setFat(Number(e.target.value))} />
                 </label>
             </div>
 
             <hr />
 
             <div>
-                <label for="preview">Preview:</label>
+                <label>Preview:</label>
                 <pre>
                     {getOutput()}
                 </pre>
@@ -116,7 +116,7 @@ export default function Download() {
 
             <hr />
 
-            <a class="secondary" role="button" href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
+            <a className="secondary" role="button" href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
 
             <hr />
         </form>

@@ -1,9 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('Download', () => {
-  render(<App />);
+beforeAll(() => {
+  jest.useFakeTimers('modern');
+  jest.setSystemTime(new Date(2025, 3, 1));
+});
 
-  const linkElement = screen.getByText(/Download/i);
-  expect(linkElement).toBeInTheDocument();
+afterAll(() => {
+  jest.useRealTimers();
+});
+
+test('App', () => {
+  const element = render(<App />).asFragment();
+
+  expect(element).toMatchSnapshot();
 });

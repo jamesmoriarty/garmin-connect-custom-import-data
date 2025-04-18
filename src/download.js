@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactDOMServer from 'react-dom/server'
+import ReactDOMServer from "react-dom/server";
 
 export default function Download() {
     const [date, setDate] = useState(getCurrentDate());
@@ -12,94 +12,136 @@ export default function Download() {
 
     function getCurrentDate() {
         const currentDate = new Date();
-        return currentDate.toLocaleDateString("en-NZ")
+        return currentDate.toLocaleDateString("en-NZ");
     }
 
     function getCurrentTime() {
         const currentDate = new Date();
-        return currentDate.toLocaleTimeString("en-NZ", { hour12: false })
+        return currentDate.toLocaleTimeString("en-NZ", { hour12: false });
     }
 
     function getBMI(weight, height) {
-        return Math.round(weight / ((height / 100) ^ 2))
+        return Math.round(weight / ((height / 100) ** 2));
     }
 
     function getFat(bmi, age) {
-        return Math.round((1.20 * bmi) + (0.23 * age) - 16.2)
+        return Math.round((1.20 * bmi) + (0.23 * age) - 16.2);
     }
 
     function changeAge(age) {
-        setAge(age)
-        setFat(getFat(bmi, age))
+        setAge(age);
+        setFat(getFat(bmi, age));
     }
 
     function changeHeight(height) {
-        setHeight(height)
-        changeBMI(getBMI(weight, height))
+        setHeight(height);
+        changeBMI(getBMI(weight, height));
     }
 
     function changeWeight(weight) {
-        setWeight(weight)
-        changeBMI(getBMI(weight, height))
+        setWeight(weight);
+        changeBMI(getBMI(weight, height));
     }
 
     function changeBMI(bmi) {
-        setBMI(bmi)
-        setFat(getFat(bmi, age))
+        setBMI(bmi);
+        setFat(getFat(bmi, age));
     }
 
     function getOutput() {
-        return <code>
-            Body{"\n"}
-            date,time,weight,bmi,fat{"\n"}
-            {date},{time},{weight},{bmi},{fat}{"\n"}
-        </code>
+        return (
+            <code>
+                Body{"\n"}
+                date,time,weight,bmi,fat{"\n"}
+                {date},{time},{weight},{bmi},{fat}{"\n"}
+            </code>
+        );
     }
 
     function getDataHREF() {
         const regex = /<[^>]*>/gm;
-        return "data:text/plain;base64," + btoa(ReactDOMServer.renderToString(getOutput()).replace(regex, ""))
+        return (
+            "data:text/plain;base64," +
+            btoa(
+                ReactDOMServer.renderToString(getOutput()).replace(regex, "")
+            )
+        );
     }
 
     return (
         <form>
             <div>
-                <label>Date:
-                    <input name="date" value={date} onChange={e => setDate(e.target.value)} />
+                <label>
+                    Date:
+                    <input
+                        name="date"
+                        value={date}
+                        onChange={(e) => setDate(e.target.value)}
+                    />
                 </label>
             </div>
             <div>
-                <label>Time:
-                    <input name="time" value={time} onChange={e => setTime(e.target.value)} />
+                <label>
+                    Time:
+                    <input
+                        name="time"
+                        value={time}
+                        onChange={(e) => setTime(e.target.value)}
+                    />
                 </label>
             </div>
             <div>
-                <label>Age:
-                    <input name="age" value={age} onChange={e => changeAge(Number(e.target.value))} />
+                <label>
+                    Age:
+                    <input
+                        name="age"
+                        value={age}
+                        onChange={(e) => changeAge(Number(e.target.value))}
+                    />
                 </label>
             </div>
-
             <div>
-                <label>Height (cm):
-                    <input name="height" value={height} onChange={e => changeHeight(Number(e.target.value))} />
+                <label>
+                    Height (cm):
+                    <input
+                        name="height"
+                        value={height}
+                        onChange={(e) =>
+                            changeHeight(Number(e.target.value))
+                        }
+                    />
                 </label>
             </div>
-
             <div>
-                <label>Weight (kg):
-                    <input name="weight" value={weight} onChange={e => changeWeight(Number(e.target.value))} />
+                <label>
+                    Weight (kg):
+                    <input
+                        name="weight"
+                        value={weight}
+                        onChange={(e) =>
+                            changeWeight(Number(e.target.value))
+                        }
+                    />
                 </label>
             </div>
-
             <div>
-                <label>BMI:
-                    <input name="bmi" value={bmi} onChange={e => changeBMI(Number(e.target.value))} />
+                <label>
+                    BMI:
+                    <input
+                        name="bmi"
+                        value={bmi}
+                        onChange={(e) => changeBMI(Number(e.target.value))}
+                    />
                 </label>
             </div>
-
             <div>
-                <label>Fat (%):
-                    <input name="fat" value={fat} onChange={e => setFat(Number(e.target.value))} />
+                <label>
+                    Fat (%):
+                    <input
+                        name="fat"
+                        value={fat}
+                        onChange={(e) => setFat(Number(e.target.value))}
+                    />
                 </label>
             </div>
 
@@ -107,16 +149,28 @@ export default function Download() {
 
             <div>
                 <label>Preview:</label>
-                <pre>
-                    {getOutput()}
-                </pre>
+                <pre>{getOutput()}</pre>
             </div>
 
-            <a role="button" href={getDataHREF()} download="weight.csv">Download</a>
+            <a
+                role="button"
+                href={getDataHREF()}
+                download="weight.csv"
+            >
+                Download
+            </a>
 
             <hr />
 
-            <a className="secondary" role="button" href="https://connect.garmin.com/modern/import-data" target="_blank" rel="noreferrer">Import Data</a>
+            <a
+                className="secondary"
+                role="button"
+                href="https://connect.garmin.com/modern/import-data"
+                target="_blank"
+                rel="noreferrer"
+            >
+                Import Data
+            </a>
 
             <hr />
         </form>

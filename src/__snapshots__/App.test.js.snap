@@ -77,7 +77,7 @@ exports[`App 1`] = `
         <pre>
           <code>
             Body
-date,time,weight,bmi,fat
+Date,Time,Weight,BMI,Fat
 1/04/2025,24:00:00,75,25,22
 
           </code>
@@ -85,7 +85,7 @@ date,time,weight,bmi,fat
       </div>
       <a
         download="weight.csv"
-        href="data:text/plain;base64,Qm9keQpkYXRlLHRpbWUsd2VpZ2h0LGJtaSxmYXQKMS8wNC8yMDI1LDI0OjAwOjAwLDc1LDI1LDIyCg=="
+        href="data:text/plain;base64,Qm9keQpEYXRlLFRpbWUsV2VpZ2h0LEJNSSxGYXQKMS8wNC8yMDI1LDI0OjAwOjAwLDc1LDI1LDIyCg=="
         role="button"
       >
         Download

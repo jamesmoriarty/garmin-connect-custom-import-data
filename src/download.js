@@ -48,11 +48,31 @@ export default function Download() {
         setFat(getFat(bmi, age));
     }
 
+    function handleNumberInputChange(event) {
+        const value = event.target.value;
+        
+        // Handle in-progress text input.
+        if (value.slice(-1) === ".") {
+            return value;
+        }
+
+        const numberValue = parseFloat(value);
+
+        return numberValue.toFixed(precision(numberValue));
+    }
+
+    function precision(a) {
+        if (!isFinite(a)) return 0;
+        var e = 1, p = 0;
+        while (Math.round(a * e) / e !== a) { e *= 10; p++; }
+        return p;
+    }
+
     function getOutput() {
         return (
             <code>
                 Body{"\n"}
-                date,time,weight,bmi,fat{"\n"}
+                Date,Time,Weight,BMI,Fat{"\n"}
                 {date},{time},{weight},{bmi},{fat}{"\n"}
             </code>
         );
@@ -96,7 +116,7 @@ export default function Download() {
                     <input
                         name="age"
                         value={age}
-                        onChange={(e) => changeAge(Number(e.target.value))}
+                        onChange={(e) => changeAge(handleNumberInputChange(e))}
                     />
                 </label>
             </div>
@@ -107,7 +127,7 @@ export default function Download() {
                         name="height"
                         value={height}
                         onChange={(e) =>
-                            changeHeight(Number(e.target.value))
+                            changeHeight(handleNumberInputChange(e))
                         }
                     />
                 </label>
@@ -119,7 +139,7 @@ export default function Download() {
                         name="weight"
                         value={weight}
                         onChange={(e) =>
-                            changeWeight(Number(e.target.value))
+                            changeWeight(handleNumberInputChange(e))
                         }
                     />
                 </label>
@@ -130,7 +150,7 @@ export default function Download() {
                     <input
                         name="bmi"
                         value={bmi}
-                        onChange={(e) => changeBMI(Number(e.target.value))}
+                        onChange={(e) => changeBMI(handleNumberInputChange(e))}
                     />
                 </label>
             </div>
@@ -140,7 +160,7 @@ export default function Download() {
                     <input
                         name="fat"
                         value={fat}
-                        onChange={(e) => setFat(Number(e.target.value))}
+                        onChange={(e) => setFat(handleNumberInputChange(e))}
                     />
                 </label>
             </div>
